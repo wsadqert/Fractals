@@ -10,20 +10,18 @@ COLOR_MAIN = (0, 0, 0)
 
 
 def fractal(rows: int, rule: int):
+    print('[...] loading...', end='')
+
     x = 2 * rows + 1
     y = rows
-
     im = Image.new(mode="RGB", size=(x, y), color=COLOR_BACK)
-
     # canvas = [[0 for _ in range(x)] for _ in range(y)]
     canvas = [[0 for _ in range(x)] for _ in range(2)]
     # canvas2 = [['  ' for _ in range(x)] for _ in range(y)]
-    arr = [0] * 8
-
     canvas[0][(x - 1) // 2] = 1
-
+    arr = [0] * 8
+    current = 0
     # canvas2[0][(x - 1) // 2] = '██'
-
     im.putpixel(((x - 1) // 2, 0), COLOR_MAIN)
 
     for i in range(7, 0, -1):
@@ -34,10 +32,9 @@ def fractal(rows: int, rule: int):
             arr[i] = 0
     arr = arr[::-1]
 
-    current = 0
-    u = 0
+    print('', end='\r')
 
-    while u < (y - 1):
+    for u in range(y - 1):
         for i in range(1, x - 1):
             current += canvas[0][i - 1] * 4
             current += canvas[0][i] * 2
@@ -49,8 +46,7 @@ def fractal(rows: int, rule: int):
                 im.putpixel((i, u + 1), COLOR_MAIN)
             current = 0
         canvas[0] = [j for j in canvas[1]]
-        u += 1
-        print(f'\r[{u + 1}/{y} ({((u + 1) / y * 100):.5f} %)', end='')
+        print(f'\r[{u + 2}/{y} ({((u + 2) / y * 100):.5f} %)', end='')
     '''
     for i in canvas2:
         for j in range(1, x - 1):
