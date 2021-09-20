@@ -42,16 +42,12 @@ def fractal(rows: int, rule: int):
             current += canvas[0][i - 1] * 4
             current += canvas[0][i] * 2
             current += canvas[0][i + 1]
-            # print(i, current)
-            # print(canvas)
             canvas[1][i] = arr[current]
 
             if arr[current]:
                 # canvas2[i // x][i % x] = '██'
                 im.putpixel((i, u + 1), COLOR_MAIN)
             current = 0
-        # else:
-        # canvas2[i // x][i % x] = '  '
         canvas[0] = [j for j in canvas[1]]
         u += 1
         print(f'\r[{u + 1}/{y} ({((u + 1) / y * 100):.5f} %)', end='')
