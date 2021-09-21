@@ -1,5 +1,4 @@
 from random import randint
-
 from PIL import Image
 
 rows = int(input('enter num of rows: '))
