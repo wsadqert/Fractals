@@ -30,8 +30,6 @@ def fractal(rows: int, rule: int):
 			arr[i] = 0
 	arr = arr[::-1]
 
-	print('', end='\r')
-
 	for u in tqdm(range(y - 1)):
 		for i in range(1, x - 1):
 			current += canvas[0][i - 1] * 4
