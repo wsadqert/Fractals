@@ -44,7 +44,6 @@ def fractal(rows: int, rule: int):
 			current = 0
 		canvas[0] = [j for j in canvas[1]]
 
-
 	im.show()
 	im.save(f'./{str(randint(1000000, 9999999))}-{rule_}.png')
 
