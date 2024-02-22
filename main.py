@@ -2,14 +2,21 @@ from random import randint
 from PIL import Image
 from tqdm import tqdm
 
-rows = int(input('enter num of rows: '))
-rule = int(input('enter num of rule: '))
+while True:
+	rule = int(input('enter num of rule: '))
+	if input(f'{bin(rule)} - do you accept (y/n, default is `y`)? ') in ('y', ''):
+		break
+
+rows = input('enter num of rows (500 by default): ')
+rows = int(rows) if rows else 500
+
+save = input('do you want to save the result (y/n, default is `n`)? ') not in ('n', '')
 
 COLOR_BACK = (255, 255, 255)
 COLOR_MAIN = (0, 0, 0)
 
 
-def fractal(rows: int, rule: int):
+def fractal(rows: int, rule: int): # noqa
 	rule_ = rule
 	print('[...] loading...', end='')
 
@@ -43,7 +50,9 @@ def fractal(rows: int, rule: int):
 		canvas[0] = [j for j in canvas[1]]
 
 	im.show()
-	im.save(f'./{str(randint(1000000, 9999999))}-{rule_}.png')
+	if save:
+		im.save(f'./{str(randint(1000000, 9999999))}-{rule_}.png')
 
 
 fractal(rows, rule)
+
